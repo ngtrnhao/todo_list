@@ -1,11 +1,21 @@
 import React from 'react';
 
-function TodoList({todos}) {
+function TodoList({todos, onToggle,onDelete}) {
     return (
         <div className = "todo-list">
             {todos.map(todo =>(
                 <div key ={todo.id} className="todo-item">
-                    <span>{todo.text}</span>
+                    <input
+                    type= "checkbox"
+                    checked={todo.completed}
+                    onChange={() => onToggle(todo.id)} 
+                    />
+                    <span style={{
+                        textDecoration: todo.completed ? 'line-through' :'none'
+                    }}>
+                        {todo.text}
+                    </span>
+                    <button onClick={()=> onDelete(todo.id)}>Xóa</button>
                 </div>
             ))}
         </div>
