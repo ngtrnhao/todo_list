@@ -12,11 +12,11 @@ function App() {
       text:text,
       completed:false
     };
-    setTodos ([...todos,newTodo]);
+    setTodos([...todos,newTodo]);
   };
 
   const handleToggle =(id) =>{
-    setTodos(todos.maps(todo=>
+    setTodos(todos.map(todo=>
       todo.id === id ? {...todo,completed: !todo.completed} :todo
     ));
   };
