@@ -23,7 +23,7 @@ function App() {
     }
   },[todos]);
   const [filter,setFilter] = useState(`all`);
-
+  const [editingId,setEditingId] = useState(null);
   const handleAddTodo = (text) =>{
     const newTodo = {
       id:Date.now(),
@@ -32,7 +32,22 @@ function App() {
     };
     setTodos([...todos,newTodo]);
   };
-
+  const handleEdit = (id, newText) => {
+    // Kiểm tra input
+    if (!newText.trim()) {
+      return;
+    }
+    
+    // Cập nhật todo
+    setTodos(todos.map(todo => 
+      todo.id === id 
+        ? {...todo, text: newText} 
+        : todo
+    ));
+    
+    // Reset trạng thái edit
+    setEditingId(null);
+  };
   const handleToggle =(id) =>{
     setTodos(todos.map(todo=>
       todo.id === id ? {...todo,completed: !todo.completed} :todo
@@ -88,6 +103,8 @@ function App() {
       todos = {getFilteredTodos()}
       onToggle={handleToggle}
       onDelete={handleDelete}
+      onEdit={handleEdit}
+      editingId={editingId}
       />
     </div>
   );
