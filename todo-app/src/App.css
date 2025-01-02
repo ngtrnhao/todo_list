@@ -58,3 +58,13 @@ button{
   color: white;
   border-color: #0056b3;
 }
+.todo-stats{
+  background:#f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.todo-stats p {
+  margin: 5px 0;
+  color: #333;
+}

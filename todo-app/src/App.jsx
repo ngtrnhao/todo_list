@@ -1,10 +1,27 @@
 import './App.css'
 import TodoForm from './components/TodoForm';
 import TodoList from './components/ToDoList';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const [todos,setTodos] = useState ([]);
+  const [todos,setTodos] = useState (()=>{
+    try{
+      //Lấy dữ liệu từ localStorage
+      const localData = localStorage.getItem('todos');
+      //Nếu có dữ liệu thì parse JSON, không thì trả về mảng rổng
+      return localData ? JSON.parse(localData) : [];
+    } catch(err) {
+      console.error('Error reading from localStorage',err);
+      return [];
+    }
+  });
+  useEffect(()=>{
+    try{
+      localStorage.setItem('todos',JSON.stringify(todos));
+    }catch (err){
+      console.error('Error saving to localStorage',err);
+    }
+  },[todos]);
   const [filter,setFilter] = useState(`all`);
 
   const handleAddTodo = (text) =>{
@@ -42,6 +59,11 @@ function App() {
   return (
     <div className="App">
       <h1>Todo App</h1>
+      <div className="todo-stats">
+        <p>Tổng số công việc: {todos.length}</p>
+        <p>Đã hoàn thành: {todos.filter(todo => todo.completed).length}</p>
+        <p>Chưa hoàn thành:{todos.filter(todo => !todo.completed).length}</p>
+      </div>
       <TodoForm onAdd = {handleAddTodo}/>
       <div className="filter-buttons">
         <button 
