@@ -1,17 +1,31 @@
 import React,{useState} from 'react';
-
-function TodoList({todos, onToggle,onDelete,onEdit}) {
+import ConfirmDialog from './ConfirmDialog';
+function TodoList({todos, onToggle,onDelete,onEdit, editingId, setEditingId}) {
     const [editText,setEditText] = useState('');
-    const[editingId,setEditingId] = useState(null);
 
     const handleEditClick = (todo) =>{
         setEditingId(todo.id);
         setEditText(todo.text);
     }
 
+    
+    const [deleteConfirm,setDeleteConfirm] = useState({isOpen:false,todoId:null});
+  
+
     const handleSave = (id) =>{
         onEdit(id,editText);
         setEditingId(null);
+    }
+    const handleDeleteClick = (id) =>{
+        setDeleteConfirm({isOpen:true,todoId:id})
+    };
+
+    const handleConfirmDelete  = () =>{
+        onDelete(deleteConfirm.todoId);
+        setDeleteConfirm({isOpen:false,todoId:null})
+    }
+    const handleCancelDelete  = () =>{
+        setDeleteConfirm({isOpen:false,todoId:null})
     }
     return (
         <div className = "todo-list">
@@ -42,7 +56,13 @@ function TodoList({todos, onToggle,onDelete,onEdit}) {
                                 {todo.text}
                             </span>
                             <button onClick={()=> handleEditClick(todo)}>Sửa</button>
-                            <button onClick={()=> onDelete(todo.id)}>Xóa</button>
+                            <button onClick={()=> handleDeleteClick(todo.id)}>Xóa</button>
+                            <ConfirmDialog 
+                             isOpen={deleteConfirm.isOpen}
+                             message="Bạn có chắc chắn muốn xóa công việc này?"
+                             onConfirm={handleConfirmDelete}
+                             onCancel={handleCancelDelete}
+                             />
                         </>
                     )}
                   

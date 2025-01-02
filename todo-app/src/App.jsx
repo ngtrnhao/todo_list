@@ -105,6 +105,7 @@ function App() {
       onDelete={handleDelete}
       onEdit={handleEdit}
       editingId={editingId}
+      setEditingId={setEditingId}
       />
     </div>
   );
