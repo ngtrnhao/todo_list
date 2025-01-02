@@ -1,0 +1,142 @@
+Quy tắc đặt tên đầy đủ trong React/JavaScript
+1. Quy tắc chung
+1.1. Kiểu chữ (Case Types)
+// PascalCase: Cho Components/Classes
+class UserProfile {}
+function TodoList {}
+
+// camelCase: Cho biến, functions, props
+const firstName = 'John';
+const handleSubmit = () => {};
+
+// SNAKE_CASE: Cho constants
+const MAX_COUNT = 100;
+const API_KEY = 'xyz';
+
+// kebab-case: Cho CSS classes
+.user-profile {}
+.nav-item {}
+1.2. Độ dài tên
+// ĐÚNG ✅ - Ngắn gọn nhưng có ý nghĩa
+const user = {};
+const handleSubmit = () => {};
+
+// SAI ❌ - Quá ngắn hoặc không rõ nghĩa
+const u = {};
+const hndlSbmt = () => {};
+2. Components
+2.1. Tên Component
+// ĐÚNG ✅
+function UserProfile() {}
+function TodoList() {}
+function NavigationBar() {}
+
+// SAI ❌
+function userProfile() {}
+function todo_list() {}
+2.2. Component Props
+// ĐÚNG ✅
+<UserProfile
+  userName="John"
+  isAdmin={true}
+  onProfileUpdate={handleUpdate}
+/>
+
+// SAI ❌
+<UserProfile
+  UserName="John"
+  is_admin={true}
+  updateProfile={handleUpdate}
+/>
+3. State và Variables
+3.1. State
+// ĐÚNG ✅
+const [isLoading, setIsLoading] = useState(false);
+const [userList, setUserList] = useState([]);
+const [formData, setFormData] = useState({});
+
+// SAI ❌
+const [loading, setLoading] = useState(false);
+const [users_list, setUsers_list] = useState([]);
+3.2. Boolean Variables
+// ĐÚNG ✅ - Sử dụng is, has, should, can
+const isVisible = true;
+const hasError = false;
+const shouldUpdate = true;
+const canEdit = false;
+
+// SAI ❌
+const visible = true;
+const error = false;
+4. Functions
+4.1. Event Handlers
+// ĐÚNG ✅
+const handleSubmit = () => {};
+const handleInputChange = () => {};
+const handleUserClick = () => {};
+
+// SAI ❌
+const submit = () => {};
+const inputChange = () => {};
+const doSomething = () => {};
+4.2. Helper Functions
+// ĐÚNG ✅
+const formatDate = (date) => {};
+const calculateTotal = (items) => {};
+const validateEmail = (email) => {};
+
+// SAI ❌
+const format = (date) => {};
+const calc = (items) => {};
+5. Collections
+5.1. Arrays
+// ĐÚNG ✅ - Sử dụng số nhiều
+const users = ['John', 'Jane'];
+const todoItems = [];
+const activeUsers = filterUsers();
+
+// SAI ❌
+const user = ['John', 'Jane'];
+const todoItem = [];
+5.2. Objects
+// ĐÚNG ✅
+const userProfile = {
+  firstName: 'John',
+  lastName: 'Doe'
+};
+
+// SAI ❌
+const user_profile = {
+  first_name: 'John',
+  last_name: 'Doe'
+};
+6. Constants
+6.1. Global Constants
+// ĐÚNG ✅
+const MAX_ITEMS_PER_PAGE = 10;
+const DEFAULT_THEME = 'light';
+const API_ENDPOINTS = {
+  USERS: '/api/users',
+  POSTS: '/api/posts'
+};
+
+// SAI ❌
+const maxItems = 10;
+const defaultTheme = 'light';
+7. Context
+// ĐÚNG ✅
+const UserContext = createContext();
+const ThemeContext = createContext();
+
+// SAI ❌
+const ContextUser = createContext();
+const Theme = createContext();
+8. Custom Hooks
+// ĐÚNG ✅ - Bắt đầu bằng use
+const useAuth = () => {};
+const useFetch = () => {};
+const useLocalStorage = () => {};
+
+// SAI ❌
+const auth = () => {};
+const getFetch = () => {};
