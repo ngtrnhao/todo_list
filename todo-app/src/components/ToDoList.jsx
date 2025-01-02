@@ -9,9 +9,10 @@ function TodoList({todos, onToggle,onDelete}) {
                     type= "checkbox"
                     checked={todo.completed}
                     onChange={() => onToggle(todo.id)} 
+                    disabled={todo.completed}
                     />
                     <span style={{
-                        textDecoration: todo.completed ? 'line-through' :'none'
+                        textDecoration: todo.completed ? 'line-through' :'none',
                     }}>
                         {todo.text}
                     </span>

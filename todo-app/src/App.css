@@ -41,3 +41,20 @@ button{
 .todo-item span{
   flex:1;
 }
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+.filter-buttons button {
+  padding: 5px 15px;
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.filter-buttons button.active {
+  background: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
