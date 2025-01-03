@@ -1,6 +1,7 @@
 import './App.css'
 import TodoForm from './components/TodoForm';
 import TodoList from './components/ToDoList';
+import Header from './components/Header'
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
   }
   return (
     <div className="App">
+      <Header></Header>
       <h1>Todo App</h1>
       <div className="todo-stats">
         <p>Tổng số công việc: {todos.length}</p>

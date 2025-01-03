@@ -112,3 +112,43 @@ button:hover {
 .modal button:last-child {
   background: #006b87;
 }
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.gap-10 {
+  gap: 2.5rem;
+}
+
+.block {
+  display: block;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.header-text {
+  font-size: 8vw;
+  white-space: nowrap;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.header-text span {
+  display: block;
+}
