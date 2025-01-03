@@ -13,12 +13,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
+    "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": "14.x"
   },
   "eslintConfig": {
     "extends": [
