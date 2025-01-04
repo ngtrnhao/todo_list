@@ -179,3 +179,6 @@ input[type="datetime-local"] {
     border-radius: 4px;
     margin-right: 10px;
 }
+.todo-content .completed{
+  text-decoration: line-through;
+}
