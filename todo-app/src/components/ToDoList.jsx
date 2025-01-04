@@ -27,6 +27,13 @@ function TodoList({todos, onToggle,onDelete,onEdit, editingId, setEditingId}) {
     const handleCancelDelete  = () =>{
         setDeleteConfirm({isOpen:false,todoId:null})
     }
+
+    const formatDeadline = (deadline) => {
+        if (!deadline) return '';
+        const date = new Date(deadline);
+        return date.toLocaleString('vi-VN');
+    };
+
     return (
         <div className = "todo-list">
             {todos.map(todo =>(
@@ -50,11 +57,16 @@ function TodoList({todos, onToggle,onDelete,onEdit, editingId, setEditingId}) {
                             onChange={() => onToggle(todo.id)} 
                             disabled={todo.completed}
                             />
-                            <span style={{
-                                textDecoration: todo.completed ? 'line-through' :'none',
-                            }}>
-                                {todo.text}
-                            </span>
+                            <div className="todo-content">
+                                <span className={todo.completed ? 'completed' : ''}>
+                                    {todo.text}
+                                </span>
+                                {todo.deadline && (
+                                    <span className="deadline">
+                                        Hạn chót: {formatDeadline(todo.deadline)}
+                                    </span>
+                                )}
+                            </div>
                             <button onClick={()=> handleEditClick(todo)}>Sửa</button>
                             <button onClick={()=> handleDeleteClick(todo.id)}>Xóa</button>
                             <ConfirmDialog 

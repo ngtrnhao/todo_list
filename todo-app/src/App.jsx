@@ -25,11 +25,13 @@ function App() {
   },[todos]);
   const [filter,setFilter] = useState(`all`);
   const [editingId,setEditingId] = useState(null);
-  const handleAddTodo = (text) =>{
+  const handleAddTodo = (text,deadline) =>{
     const newTodo = {
       id:Date.now(),
       text:text,
-      completed:false
+      completed:false,
+      deadline:deadline,
+      priority:'normal'
     };
     setTodos([...todos,newTodo]);
   };

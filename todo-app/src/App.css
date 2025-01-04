@@ -152,3 +152,30 @@ button:hover {
 .header-text span {
   display: block;
 }
+
+.todo-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.deadline {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.deadline.overdue {
+    color: #ff4444;
+}
+
+form {
+    flex-wrap: wrap;
+}
+
+input[type="datetime-local"] {
+    padding: 8px;
+    border: 1px solid #006b87;
+    border-radius: 4px;
+    margin-right: 10px;
+}
