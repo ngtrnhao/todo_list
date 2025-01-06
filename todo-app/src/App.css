@@ -1,127 +1,65 @@
-.App{
+/* Theme Variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #2f4858;
+  --item-bg: #f8f9fa;
+  --border-color: #006b87;
+  --button-bg: #00b69d;
+  --button-hover: #0091a1;
+  --stats-bg: #006b87;
+  --completed-bg: #f0f0f0;
+  --completed-text: #888;
+  --filter-button-bg: #f5f5f5;
+  --filter-button-active: #00da7b;
+  --deadline-color: #666;
+  --overdue-color: #ff4444;
+  --todo-border: #0af931;
+  --edit-button: #00da7b;
+  --delete-button: #006b87;
+}
+
+/* Dark Theme */
+.dark {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --item-bg: #2d2d2d;
+  --border-color: #4a4a4a;
+  --button-bg: #404040;
+  --button-hover: #505050;
+  --stats-bg: #333333;
+  --completed-bg: #3d3d3d;
+  --completed-text: #aaaaaa;
+  --filter-button-bg: #2d2d2d;
+  --filter-button-active: #505050;
+  --deadline-color: #888;
+  --overdue-color: #ff6666;
+  --todo-border: #2d6a36;
+  --edit-button: #2d6a36;
+  --delete-button: #404040;
+}
+
+/* Base Styles */
+.App {
   max-width: 600px;
-  margin:0 auto;
-  padding:20px;
+  margin: 0 auto;
+  padding: 20px;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
-
-}
-h1{
-  text-align:center;
-  color:#2f4858;
-}
-form{
-  display: flex;
-  gap:10px;
-  margin-bottom: 20px;
-}
-input[type="text"] {
- flex:1;
- padding: 8px;
- border: 1px solid #006b87;
- border-radius: 4px;
-}
-button{
-  padding: 8px 16px;
-  background-color: var(--button-bg);
-  color: rgb(0, 0, 0);
-  border:none;
-  border-radius:4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-button:hover {
-  background: #0091a1;
-}
-.todo-list{
-  margin-top: 20px;
-}
-.todo-item{
-  background: var(--item-bg);
-  border-color:var(--border-color) ;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  border-left: 4px solid #0af931;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
-
 }
 
-.todo-item span{
-  flex:1;
-}
-.filter-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+h1 {
+  text-align: center;
+  color: var(--text-color);
+  font-size: 2.5em;
   margin: 20px 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 10px;
+  border-bottom: 3px solid var(--border-color);
+  transition: color 0.3s ease;
 }
-.filter-buttons button {
-  padding: 5px 15px;
-  background: #f5f5f5;
-  color: #2f4858;
-  border: 1px solid #006b87;
-}
-.filter-buttons button.active {
-  background: #00da7b;
-  color: white;
-  border-color: #00b69d;
-}
-.todo-stats{
-  background: #006b87;
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  color: white;
-}
-.todo-stats p {
-  margin: 5px 0;
-  color: white;
-}
-.edit-form input {
-  border-color: #00da7b;
-}
-.todo-item button:first-of-type {
-  background: #00da7b;
-}
-.todo-item button:last-of-type {
-  background: #006b87;
-}
-.modal-overlay{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.modal{
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  min-width: 300px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.modal-buttons{
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
-}
-.modal button:last-child {
-  background: #006b87;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
-
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -158,84 +96,197 @@ button:hover {
 .header-text span {
   display: block;
 }
-
-.todo-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.dark h1 {
+  border-bottom-color: var(--border-color);
 }
 
-.deadline {
-    font-size: 0.8em;
-    color: #666;
-}
-
-.deadline.overdue {
-    color: #ff4444;
-}
-
+/* Form Styles */
 form {
-    flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
+input[type="text"],
 input[type="datetime-local"] {
-    padding: 8px;
-    border: 1px solid #006b87;
-    border-radius: 4px;
-    margin-right: 10px;
-}
-.todo-content .completed{
-  text-decoration: line-through;
-  opacity: 0.7;
-  background-color: #f0f0f0;
-  padding: 5px;
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
-  color: #888;
-}
-/*Theme Variables */
-:root{
-  --bg-color:#f5f5f5;
-  --text-color: #2f4858;
-  --item-bg: white;
-  --border-color: #006b87;
-  --button-bg: #00b69d;
-  --buton-hover: #0091a1;
-}
-.dark{
-  --bg-color:#0f0e0e;
-  --text-color: #ffffff;
-  --item-bg: white;
-  --border-color: #4a4a4a;
-  --button-bg: #404040;
-  --button-hover: #505050;
-}
-.theme-toggle{
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px ;
-  border-radius: 50% ;
-  border:none;
-  cursor: pointer;
-  font-size:20px;
-  display:flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--item-bg);
   color: var(--text-color);
-  transition: all 0.3 ease;
-}
-.dark .todo-stats{
-  background-color: #404040;
 }
 
-
-/* Dark mode cho buttons */
+/* Button Styles */
 button {
+  padding: 8px 16px;
   background-color: var(--button-bg);
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
   background-color: var(--button-hover);
+}
+
+/* Todo List Styles */
+.todo-list {
+  margin-top: 20px;
+}
+
+.todo-item {
+  background: var(--item-bg);
+  border-left: 4px solid var(--todo-border);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.todo-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.todo-content .completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+  background-color: var(--completed-bg);
+  padding: 5px;
+  border-radius: 4px;
+  color: var(--completed-text);
+}
+
+.deadline {
+  font-size: 0.8em;
+  color: var(--deadline-color);
+}
+
+.deadline.overdue {
+  color: var(--overdue-color);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.filter-buttons button {
+  padding: 5px 15px;
+  background-color: var(--filter-button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.filter-buttons button.active {
+  background-color: var(--filter-button-active);
+  color: var(--text-color);
+}
+
+/* Stats Section */
+.todo-stats {
+  background-color: var(--stats-bg);
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1000;
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: var(--item-bg);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 300px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  background-color: var(--button-bg);
+}
+
+/* Action Buttons */
+.todo-item button:first-of-type {
+  background-color: var(--edit-button);
+}
+
+.todo-item button:last-of-type {
+  background-color: var(--delete-button);
+}
+.header-container{
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  display:block;
+  justify-content: center;
+  align-items: center;
+}
+.header-text-style {
+  display: flex;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  animation: scrollText 20s linear infinite;
+  text-align: center; /* Căn giữa text */
+}
+
+.header-text-style span {
+  margin-right: 50px;
+  font-size: 24px;
+  color: var(--text-color);
+  display: inline-block;
 }
