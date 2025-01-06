@@ -1,7 +1,7 @@
 import './App.css'
 import TodoForm from './components/TodoForm';
 import TodoList from './components/ToDoList';
-import Header from './components/Header'
+import Header from './components/Header';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -25,6 +25,19 @@ function App() {
   },[todos]);
   const [filter,setFilter] = useState(`all`);
   const [editingId,setEditingId] = useState(null);
+  const [darkMode,setDarkMode] = useState(false);
+  useEffect(()=>{
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'dark'){
+      setDarkMode(true);
+    }
+  },[]);
+  //function toggle theme 
+  const toggleTheme =() =>{
+    setDarkMode(!darkMode);
+    localStorage.setItem('theme',!darkMode ? 'dark':'light');
+  };
+  
   const handleAddTodo = (text,deadline) =>{
     const newTodo = {
       id:Date.now(),
@@ -75,7 +88,10 @@ function App() {
     }
   }
   return (
-    <div className="App">
+    <div className={`App ${darkMode? 'dark':'light'}`}>
+      <button onClick={toggleTheme} className="theme-toggle">
+        {darkMode ?  '🌞' : '🌙'}
+      </button>
       <Header></Header>
       <h1>Todo App</h1>
       <div className="todo-stats">
