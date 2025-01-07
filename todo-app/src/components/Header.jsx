@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollBaseAnimation from './ScrollBaseAnimation';
+import ScrollBaseAnimation from '../animations/ScrollBaseAnimation';
 
 function Header() {
   return (

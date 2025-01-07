@@ -3,7 +3,7 @@ import TodoForm from './components/TodoForm';
 import TodoList from './components/ToDoList';
 import Header from './components/Header';
 import { useState, useEffect } from 'react';
-
+import Calendar from './components/Calendar';
 function App() {
   const [todos,setTodos] = useState (()=>{
     try{
@@ -25,6 +25,7 @@ function App() {
   },[todos]);
   const [filter,setFilter] = useState(`all`);
   const [editingId,setEditingId] = useState(null);
+  const [view,setView] =useState('list');
   const [darkMode,setDarkMode] = useState(false);
   useEffect(()=>{
     const savedTheme = localStorage.getItem('theme');
@@ -47,6 +48,11 @@ function App() {
       priority:'normal'
     };
     setTodos([...todos,newTodo]);
+  };
+  const handleUpdateTodo = (id, updatedTodo) => {
+    setTodos(todos.map(todo => 
+        todo.id === id ? updatedTodo : todo
+    ));
   };
   const handleEdit = (id, newText) => {
     // Kiểm tra input
@@ -119,14 +125,36 @@ function App() {
           Đã xong
         </button>
       </div>
-      <TodoList 
-      todos = {getFilteredTodos()}
-      onToggle={handleToggle}
-      onDelete={handleDelete}
-      onEdit={handleEdit}
-      editingId={editingId}
-      setEditingId={setEditingId}
+      <div className ="view-toggle">
+        <button
+        className = {view ==='list' ?'active' :''}
+        onClick = {() => setView('list')}
+        >
+          Danh Sách
+        </button>
+        <button
+        className = {view === 'calendar'? 'active' : ''}
+        onClick = {() => setView('calendar')}
+        >
+          Lịch
+        </button>
+      </div>
+      {view ==='list' ? (
+        <TodoList
+        todos={getFilteredTodos()}
+        onToggle={handleToggle}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+        editingId={editingId}
+        setEditingId={setEditingId}
+        />
+      ) : (
+        <Calendar 
+          todos={todos} 
+          onUpdateTodo={handleUpdateTodo}
       />
+      )} 
+      
     </div>
   );
 }
