@@ -1,9 +1,13 @@
 import './App.css'
 import TodoForm from './components/TodoForm';
-import TodoList from './components/ToDoList';
+import TodoList from './components/TodoList';
 import Header from './components/Header';
 import { useState, useEffect } from 'react';
 import Calendar from './components/Calendar';
+import { Routes, Route, Link } from 'react-router-dom';
+import TodoPage from './page/TodoPage';
+import CalendarPage from './page/CalendarPage';
+
 function App() {
   const [todos,setTodos] = useState (()=>{
     try{
@@ -94,67 +98,39 @@ function App() {
     }
   }
   return (
-    <div className={`App ${darkMode? 'dark':'light'}`}>
+    <div className={`App ${darkMode ? 'dark' : 'light'}`}>
       <button onClick={toggleTheme} className="theme-toggle">
-        {darkMode ?  '🌞' : '🌙'}
+        {darkMode ? '🌞' : '🌙'}
       </button>
-      <Header></Header>
+      <Header />
       <h1>Todo App</h1>
-      <div className="todo-stats">
-        <p>Tổng số công việc: {todos.length}</p>
-        <p>Đã hoàn thành: {todos.filter(todo => todo.completed).length}</p>
-        <p>Chưa hoàn thành:{todos.filter(todo => !todo.completed).length}</p>
-      </div>
-      <TodoForm onAdd = {handleAddTodo}/>
-      <div className="filter-buttons">
-        <button 
-        className ={filter === 'all' ? 'active' : ``}
-        onClick = {() => handleFilterChange('all')}
-        >
-          Tất cả
-        </button>
-        <button 
-        className ={filter === 'active' ? 'active' : ``}
-        onClick = {() => handleFilterChange('active')}
-        >Đang làm 
-        </button>
-        <button 
-        className = {filter === 'completed' ? 'active' : ``}
-        onClick ={() =>handleFilterChange('completed') }
-        >
-          Đã xong
-        </button>
-      </div>
-      <div className ="view-toggle">
-        <button
-        className = {view ==='list' ?'active' :''}
-        onClick = {() => setView('list')}
-        >
-          Danh Sách
-        </button>
-        <button
-        className = {view === 'calendar'? 'active' : ''}
-        onClick = {() => setView('calendar')}
-        >
-          Lịch
-        </button>
-      </div>
-      {view ==='list' ? (
-        <TodoList
-        todos={getFilteredTodos()}
-        onToggle={handleToggle}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-        editingId={editingId}
-        setEditingId={setEditingId}
-        />
-      ) : (
-        <Calendar 
-          todos={todos} 
-          onUpdateTodo={handleUpdateTodo}
-      />
-      )} 
       
+      <nav className="navigation">
+        <Link to="/">Danh sách công việc</Link>
+        <Link to="/calendar">Lịch</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={
+          <TodoPage 
+            todos={todos}
+            onAdd={handleAddTodo}
+            onToggle={handleToggle}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            filter={filter}
+            handleFilterChange={handleFilterChange}
+            editingId={editingId}
+            setEditingId={setEditingId}
+          />
+        } />
+        <Route path="/calendar" element={
+          <CalendarPage 
+            todos={todos}
+            onUpdateTodo={handleUpdateTodo}
+          />
+        } />
+      </Routes>
     </div>
   );
 }
