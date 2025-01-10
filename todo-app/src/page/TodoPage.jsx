@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
-
+import TodoSidebar from '../components/TodoSidebar';
 function TodoPage({ 
   todos, 
   onAdd, 
@@ -26,6 +26,7 @@ function TodoPage({
 
   return (
     <div className="todo-page">
+      
       <div className="todo-stats">
         <p>Tổng số công việc: {todos.length}</p>
         <p>Đã hoàn thành: {todos.filter(todo => todo.completed).length}</p>

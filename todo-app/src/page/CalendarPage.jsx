@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import viLocale from '@fullcalendar/core/locales/vi';
-
+import TodoSidebar from '../components/TodoSidebar';
 function CalendarPage({ todos, onUpdateTodo }) {
   const events = todos.map(todo => ({
     id: todo.id,
@@ -30,35 +30,9 @@ function CalendarPage({ todos, onUpdateTodo }) {
     .slice(0, 5);
 
   return (
+    
     <div className="calendar-page">
-      <div className="calendar-sidebar">
-        <div className="sidebar-section">
-          <h3>Thống kê</h3>
-          <div className="stats-circle">
-            <span>{todos.length}</span>
-            <p>Tổng số</p>
-          </div>
-          <div className="stats-details">
-            <p>Đã hoàn thành: {todos.filter(t => t.completed).length}</p>
-            <p>Chưa hoàn thành: {todos.filter(t => !t.completed).length}</p>
-          </div>
-        </div>
-
-        <div className="sidebar-section">
-          <h3>Công việc sắp tới</h3>
-          <div className="upcoming-tasks">
-            {upcomingTasks.map(todo => (
-              <div key={todo.id} className="upcoming-task-item">
-                <span className="task-title">{todo.text}</span>
-                <span className="task-deadline">
-                  {new Date(todo.deadline).toLocaleDateString('vi-VN')}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
+      <TodoSidebar todos={todos} />
       <div className="calendar-main">
         <FullCalendar
           plugins={[timeGridPlugin, interactionPlugin]}

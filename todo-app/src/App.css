@@ -40,7 +40,7 @@
 
 /* Base Styles */
 .App {
-  max-width: 600px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   background-color: var(--bg-color);
@@ -298,8 +298,8 @@ button:hover {
   padding: 20px;
   background: var(--bg-color);
   border-radius: 8px;
-  min-height: 700px;
-  max-width: 1200px;
+  min-height: 800px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -308,6 +308,7 @@ button:hover {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 100%;
 }
 
 .calendar-main {
@@ -315,15 +316,18 @@ button:hover {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-height: 800px;
 }
 
 /* FullCalendar overrides */
 .fc {
   background: var(--bg-color);
+  height: 100% !important;
 }
 
 .fc-toolbar-title {
-  font-size: 1.2em !important;
+  font-size: 1.5em !important;
+  font-weight: bold !important;
   color: var(--text-color);
 }
 
@@ -331,6 +335,8 @@ button:hover {
   background: var(--button-bg) !important;
   border: none !important;
   color: var(--text-color) !important;
+  padding: 8px 12px !important;
+  font-size: 0.9em !important;
 }
 
 .fc-button:hover {
@@ -338,18 +344,19 @@ button:hover {
 }
 
 .fc-timegrid-slot {
-  height: 50px !important;
+  height: 40px !important;
   border-bottom: 1px solid var(--border-color) !important;
 }
 
 .fc-timegrid-slot-label {
+  font-size: 0.9em;
   color: var(--text-color);
 }
 
 .fc-col-header-cell {
-  background: var(--item-bg);
-  color: var(--text-color);
-  padding: 8px !important;
+  background: var(--bg-color);
+  padding: 12px 0 !important;
+  font-weight: bold;
 }
 
 .fc-theme-standard td, 
@@ -359,9 +366,10 @@ button:hover {
 
 .fc-event {
   border-radius: 4px;
-  padding: 2px 4px;
+  padding: 4px 6px !important;
   margin: 1px 0;
   cursor: pointer;
+  font-size: 0.9em !important;
 }
 
 /* Stats circle */
@@ -414,7 +422,7 @@ button:hover {
 }
 
 .todo-page {
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
 }
