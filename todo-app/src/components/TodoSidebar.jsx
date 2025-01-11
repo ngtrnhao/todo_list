@@ -20,7 +20,7 @@ function TodoSidebar({todos}) {
                     <p>Công việc</p>
                 </div>
             </div>
-            <div classname ="task-types">
+            <div className ="task-types">
                 <div className="task-type">
                     <span className= "dot normal"></span>
                     <span>{normalTasks} Công việc chính </span>
